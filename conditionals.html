@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app">
+
+
+        <!-- 1 -->
+        <!-- many times it happens that we want to conditionally show or hide some elements 
+        we can use vue to do that-->
+        <!-- we can  use v-if directive for that which will show element only when some
+        condition will be true -->
+        <!-- we can use any valid js expression which will return boolean in v-if -->
+        <p v-if="true"> its true </p>
+        <!-- note hear if the condition will be false the element is totally removed 
+        from dom it will not be present in current html  -->
+        <!-- you will also notice that when we use conditionals in elements vue will 
+         use  ' v-if '  or  'v-else' such things when the value will be false for
+        those elements so it can render it in exzet place when condition become true -->
+
+        <!-- 2 -->
+        <!-- we can use data, computed, methods etc to get final boolean value at end
+        to conditionally show or hide dom elements -->
+        <p v-if="isShow"> show by data </p>
+        <p v-if="showByComputing"> show by computed </p>
+
+        <!-- 3 -->
+
+        <button @click="counter++">Incress</button>
+        <button @click="counter--">decress</button>
+        {{ counter }}
+
+        <p v-if="showByMethod()"> show by method </p>
+        <!-- you can also use methods for showing data conditionally but keep in mind
+        hear we have to execute method to get return value in if or else 
+        also v-if v-else all are data just dynamic bindings so when we use methods hear
+        it will also re render every time when something change. you can see by incressing
+        counter and showing console-->
+
+        <hr>
+
+        <!-- 3 -->
+        <!-- we are not just limited to v-if we can use v-else-if and v-else just
+        like we use in our js only one thing to keep in mind is that when we use v-else-if
+        or v-else with we v-if we have to use them just after the element where we use v-if
+        we can't use any other element in between-->
+        <h1>method</h1>
+        <p v-if="randomFromListMethod() === 1"> in if </p>
+        <p v-else-if="randomFromListMethod() === 2"> in else-if </p>
+        <p v-else> in else </p>
+
+        <h1>computed</h1>
+        <p v-if="randomFromListComputed === 1"> in if </p>
+        <p v-else-if="randomFromListComputed === 2"> in else-if </p>
+        <p v-else> in else </p>
+
+        <!-- hear we can also see in methods it's re rendring on every counter update but in
+        computed it's not a case -->
+
+        <!-- 4 -->
+        <!-- there is also another alternative for v-if it's v-show and the only difference
+        between both is in v-if it's totally add or remove element base on conditions where
+        v-show will not remove element form dom it's just add display style to none -->
+        <!-- we also don't have v-else-if or v-else like alternative in v-show -->
+        <!-- as a rule you should use v-if most of time you only use v-show when
+        some element's visibility toggles a lot from visible or invisible for performance
+        or some times you really don't want to remove element just invisible it for some reasons -->
+        
+
+    </div>
+    
+</body>
+
+<script src="https://unpkg.com/vue@next"></script>
+<script src="./conditionals.js"></script>
+</html>

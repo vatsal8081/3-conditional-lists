@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app">
+
+        <!-- 1 -->
+        <!-- many times we also want to create some elements multiple times -->
+        <!-- we can use v-for directive for that -->
+        <ul>
+            <li v-for="elem in [1,2,3]">
+                <strong> {{ elem  }} </strong>
+            </li>
+        </ul>
+        <!-- hear in v-for we are using loop just we use in js we can also use 'of' 
+        instead of 'in'  in loops but we should use in hear  -->
+        <!-- just to show you we have access to current element in element on which
+        we use v-for and also in all sub elements where we use v-for so hear elem is 
+        accessible from li to all it's child elements -->
+
+        <!-- 2 -->
+        <!-- you can create range as well with v-for syntax just bu providing integer -->
+        <p  v-for="num in 3">  {{ num }}  </p>
+
+        <!-- 3 -->
+        <p v-for="(el, i) in fruits">  {{el}} - {{i + 1 }}  </p>
+        <!-- we also can use index in loops with data we just have to use () and in first
+        param vue will give current element abd in second it give index-->
+
+        <!-- 4 -->
+        <p v-for="(value, key, i) in user">  {{ key }} : {{ value }} - {{ i + 1 }} </p>
+        <!-- we are not just limited to loop through arrays we can also loop on objects
+        the syntax will be same we will get value as first, key as second and index as third 
+        argument in hear if we just want to use values we can use simple syntax without ()-->
+
+
+        <!-- whriht about only added element will render in dom instead of all list elems-->
+
+    </div>
+    
+</body>
+
+<script src="https://unpkg.com/vue@next"></script>
+<script src="./loops.js"></script>
+</html>
