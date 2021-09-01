@@ -5,6 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <style>
+        .box-content {
+            background-color: aquamarine;
+        }
+    </style>
 </head>
 <body>
 
@@ -40,7 +46,79 @@
         argument in hear if we just want to use values we can use simple syntax without ()-->
 
 
-        <!-- whriht about only added element will render in dom instead of all list elems-->
+        <!-- 5 -->
+        <hr>
+        <button @click="counter++"> incress </button>
+        <button @click="counter--"> decrease </button>
+        {{ counter }}
+        <p v-for="(el, i) in getNames">  {{el}} - {{i + 1 }}  </p>
+        <p v-for="(el, i) in getNamesMethod()">  {{el}} - {{i + 1 }}  </p>
+        <!-- also in v-for we can use computed or method to get data  -->
+        <!-- and keep in mind if v-for also methods use for data binding will re render 
+        every time you can see by incressing counter and seeing console -->
+
+
+        <!-- 6 -->
+        <hr>
+        <input type="text" v-model="todoInput">
+        <button @click="addTodo"> add </button>
+        <p v-if="todo.length === 0"> no todo available </p>
+        <div class="box-content" v-if="todo.length" v-for="(el, i) in todo" @click="removeTodo(i)">
+            <p>  {{ el }}  - {{ i }} </p>
+        </div>
+
+        <!-- just open dev console and watch div we use in v-for when we add or remove 
+        any item in array all elements will not re render only added one or removed one
+        will change for batter performance and there elements will stay same-->
+
+        <!-- 7 -->
+        <hr>
+        <input type="text" v-model="todoInput">
+        <button @click="addTodo"> add </button>
+        <p v-if="todo.length === 0"> no todo available </p>
+        <div class="box-content" 
+            v-if="todo.length" 
+            v-for="(el, i) in todo" 
+            @click="removeTodo(i)"
+            :key="el"
+        >
+            <p>  {{ el }}  - {{ i }} </p>
+            <input type="text" @click.stop>
+        </div>
+
+        <!-- before going furthar remove :key="el" to understand it -->
+
+        <!-- hear we are using same thing as above just diffrence is that we are using input hear
+        and on input click we are stoping current click execution so in click of input we don't remove
+        item from list -->
+
+        <!-- thats just setup main thing to understand hear is create 2 items in list
+        add 1 into first items input field and 2 into second items input field
+        now remove first item so by rule if first item remove then there will be 
+        one item in list and input of it will be 2 because it's second list and also
+        we put 2 in that input but hear the input will contain 1 insted of 2 -->
+
+        <!-- thats happen because when we add or remove item from list to avoid double
+        full list re render and incress pufformance vue will just change contain in dom -->
+        <!-- in this example when we remove 1 then vue will just take take all contain
+        inside 2 and append it at place of 1 and re render all dynamic elements but
+        hear input is not dynamic so it will leave it as it is so in this case 1 will be
+        stay as it is insted of changing as 2 and also all static elements will stay same-->
+
+        <!-- to remove this bug we alwase have to use :key property which will we unique in
+        every etrations most of case it will be id field from data provied dy api-->
+
+        <!-- but in this case we are using just simple array so in this case we can use
+        i as unique identifier but keep in mind it's also not unique because when we  
+        add or remove things from array index also updates so you will see this issue in
+        using i as well so you can use todo text if all to do are unique-->
+
+        <!-- keep in mind index is not unique so try if possible to use some other modifier which
+        is unique if possible in case where we are not binding some in loop and it's difrent in 
+        itrations-->
+        
+
+
 
     </div>
     
